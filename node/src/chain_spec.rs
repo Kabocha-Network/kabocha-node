@@ -1,10 +1,12 @@
 use cumulus_primitives_core::ParaId;
-use parachain_runtime::{AccountId, AuraId, Signature};
+use parachain_runtime::{AccountId, AuraConfig, BalancesConfig, GenesisAccount, GenesisConfig, GrandpaConfig, Signature, SudoConfig,
+	SystemConfig, WASM_BINARY, EVMConfig,};
 use sc_chain_spec::{ChainSpecExtension, ChainSpecGroup};
 use sc_service::ChainType;
 use serde::{Deserialize, Serialize};
 use sp_core::{sr25519, Pair, Public};
 use sp_runtime::traits::{IdentifyAccount, Verify};
+use sp_core::{H160, U256};
 
 /// Specialized `ChainSpec` for the normal parachain runtime.
 pub type ChainSpec = sc_service::GenericChainSpec<parachain_runtime::GenesisConfig, Extensions>;
@@ -140,6 +142,23 @@ fn testnet_genesis(
 			balances: endowed_accounts.iter().cloned().map(|k| (k, 1 << 60)).collect(),
 		},
 		sudo: parachain_runtime::SudoConfig { key: root_key },
+		evm: EVMConfig {
+			accounts: {
+				// Prefund the "Gerald" account
+				let mut accounts = std::collections::BTreeMap::new();
+				accounts.insert(
+					H160::from_slice(&hex_literal::hex!("6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b")),
+					GenesisAccount{
+						nonce: U256::zero(),
+						// Using a larger number, so I can tell the accounts apart by balance.
+						balance: U256::from(1u64 << 61),
+						code: vec![],
+						storage: std::collections::BTreeMap::new(),
+					}
+				);
+				accounts
+			}
+		},
 		parachain_info: parachain_runtime::ParachainInfoConfig { parachain_id: id },
 		aura: parachain_runtime::AuraConfig { authorities: initial_authorities },
 		aura_ext: Default::default(),
