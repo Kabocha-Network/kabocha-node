@@ -7,3 +7,14 @@ members = [
 	'pallets/*',
 	'runtime',
 ]
+
+
+# Use scale-info compatible crates that I hacked together. Each of these overrides is associated with a
+# dependency in another repo
+[patch.crates-io]
+
+# RustBlockchain/evm repo: https://github.com/rust-blockchain/evm/pull/63
+evm-core = { git = "https://github.com/Kabocha-Network/evm", branch = "ramsey-evm-para"}
+
+# RustBlockchain/ethereum repo: https://github.com/rust-blockchain/ethereum/pull/22
+ethereum = { git = "https://github.com/Kabocha-Network/ethereum", branch = "ramsey-parachain-ethereum"} 

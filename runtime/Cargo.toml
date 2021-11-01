@@ -18,6 +18,8 @@ codec = { package = 'parity-scale-codec', version = '2.0.0', default-features = 
 log = { version = "0.4.14", default-features = false }
 serde = { version = '1.0.119', optional = true, features = ['derive'] }
 
+
+
 # Local Dependencies
 template = { package = 'pallet-template', path = '../pallets/template', default-features = false }
 
@@ -71,6 +73,8 @@ xcm-builder = { git = 'https://github.com/paritytech/polkadot', branch = 'releas
 xcm-executor = { git = 'https://github.com/paritytech/polkadot', branch = 'release-v0.9.10', default-features = false }
 pallet-xcm = { git = 'https://github.com/paritytech/polkadot', branch = 'release-v0.9.10', default-features = false }
 
+# Frontier Dependencies
+pallet-evm = { git = "https://github.com/Kabocha-Node/frontier", default-features = false, branch = "kabocha-polkadot-v0.9.10" }
 [features]
 default = ['std']
 runtime-benchmarks = [
@@ -120,4 +124,5 @@ std = [
 	"pallet-aura/std",
 	"sp-consensus-aura/std",
 	'template/std',
+	'pallet-evm/std',
 ]
