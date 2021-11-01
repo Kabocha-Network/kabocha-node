@@ -22,8 +22,9 @@ use sp_version::RuntimeVersion;
 
 use sp_core::U256;
 use pallet_evm::{
-	EnsureAddressRoot, EnsureAddressNever, HashedAddressMapping, SubstrateBlockHashMapping,
+	EnsureAddressRoot, EnsureAddressNever, HashedAddressMapping,
 };
+use pallet_ethereum::EthereumBlockHashMapping;
 // pub use this so we can import it in the chain spec.
 #[cfg(feature = "std")]
 pub use pallet_evm::GenesisAccount;
@@ -336,7 +337,7 @@ impl pallet_evm::Config for Runtime {
 
 	type BlockGasLimit = BlockGasLimit;
 	type ChainId = LeetChainId;
-	type BlockHashMapping = SubstrateBlockHashMapping<Self>;
+	type BlockHashMapping = EthereumBlockHashMapping<Self>;
 	type Runner = pallet_evm::runner::stack::Runner<Self>;
 
 	type CallOrigin = EnsureAddressRoot<AccountId>;
