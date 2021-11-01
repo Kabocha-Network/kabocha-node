@@ -75,6 +75,10 @@ pallet-xcm = { git = 'https://github.com/paritytech/polkadot', branch = 'release
 
 # Frontier Dependencies
 pallet-evm = { git = "https://github.com/Kabocha-Node/frontier", default-features = false, branch = "kabocha-polkadot-v0.9.10" }
+pallet-ethereum = { git = "https://github.com/Kabocha-Node/frontier", default-features = false, branch = "kabocha-polkadot-v0.9.10" }
+fp-self-contained = { git = "https://github.com/Kabocha-Node/frontier", default-features = false, branch = "kabocha-polkadot-v0.9.10" }
+
+
 [features]
 default = ['std']
 runtime-benchmarks = [
@@ -125,4 +129,6 @@ std = [
 	"sp-consensus-aura/std",
 	'template/std',
 	'pallet-evm/std',
+	'pallet-ethereum/std',
+	'fp-self-contained/std',
 ]
