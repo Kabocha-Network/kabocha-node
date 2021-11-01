@@ -77,6 +77,7 @@ pallet-xcm = { git = 'https://github.com/paritytech/polkadot', branch = 'release
 pallet-evm = { git = "https://github.com/Kabocha-Node/frontier", default-features = false, branch = "kabocha-polkadot-v0.9.10" }
 pallet-ethereum = { git = "https://github.com/Kabocha-Node/frontier", default-features = false, branch = "kabocha-polkadot-v0.9.10" }
 fp-self-contained = { git = "https://github.com/Kabocha-Node/frontier", default-features = false, branch = "kabocha-polkadot-v0.9.10" }
+fp-rpc = { git = "https://github.com/Kabocha-Node/frontier", default-features = false, branch = "kabocha-polkadot-v0.9.10" }
 
 
 [features]
@@ -131,4 +132,5 @@ std = [
 	'pallet-evm/std',
 	'pallet-ethereum/std',
 	'fp-self-contained/std',
+	'fp-rpc/std',	
 ]
