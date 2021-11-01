@@ -1,6 +1,6 @@
 use cumulus_primitives_core::ParaId;
 use parachain_runtime::{AccountId, AuraConfig, BalancesConfig, GenesisAccount, GenesisConfig, GrandpaConfig, Signature, SudoConfig,
-	SystemConfig, WASM_BINARY, EVMConfig,};
+	SystemConfig, WASM_BINARY, EVMConfig,EthereumConfig,};
 use sc_chain_spec::{ChainSpecExtension, ChainSpecGroup};
 use sc_service::ChainType;
 use serde::{Deserialize, Serialize};
@@ -159,6 +159,7 @@ fn testnet_genesis(
 				accounts
 			}
 		},
+		ethereum: EthereumConfig{},
 		parachain_info: parachain_runtime::ParachainInfoConfig { parachain_id: id },
 		aura: parachain_runtime::AuraConfig { authorities: initial_authorities },
 		aura_ext: Default::default(),
