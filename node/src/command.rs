@@ -24,7 +24,7 @@ fn load_spec(
 ) -> std::result::Result<Box<dyn sc_service::ChainSpec>, String> {
 	Ok(match id {
 		"dev" => Box::new(chain_spec::development_config(para_id)),
-		"template-rococo" => Box::new(chain_spec::local_testnet_config(para_id)),
+		"kabocha_testnet" => Box::new(chain_spec::local_testnet_config(para_id)),
 		"" | "local" => Box::new(chain_spec::local_testnet_config(para_id)),
 		path => Box::new(chain_spec::ChainSpec::from_json_file(std::path::PathBuf::from(path))?),
 	})
@@ -32,8 +32,8 @@ fn load_spec(
 
 impl SubstrateCli for Cli {
 	fn impl_name() -> String {
-		"Parachain Collator Template".into()
-	}
+		"Kabocha Collator".into()
+	}	
 
 	fn impl_version() -> String {
 		env!("SUBSTRATE_CLI_IMPL_VERSION").into()
@@ -72,7 +72,7 @@ impl SubstrateCli for Cli {
 
 impl SubstrateCli for RelayChainCli {
 	fn impl_name() -> String {
-		"Parachain Collator Template".into()
+		"Kabocha Collator".into()
 	}
 
 	fn impl_version() -> String {
@@ -80,7 +80,7 @@ impl SubstrateCli for RelayChainCli {
 	}
 
 	fn description() -> String {
-		"Parachain Collator Template\n\nThe command-line arguments provided first will be \
+		"Kabocha Collator \n\nThe command-line arguments provided first will be \
 		passed to the parachain node, while the arguments provided after -- will be passed \
 		to the relay chain node.\n\n\
 		parachain-collator [parachain-args] -- [relay_chain-args]"

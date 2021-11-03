@@ -115,16 +115,16 @@ pub fn development_config(id: ParaId) -> ChainSpec {
 pub fn local_testnet_config(id: ParaId) -> ChainSpec {
 	// Give your base currency a unit name and decimal places
 	let mut properties = sc_chain_spec::Properties::new();
-	properties.insert("tokenSymbol".into(), "UNIT".into());
+	properties.insert("tokenSymbol".into(), "KAB".into());
 	properties.insert("tokenDecimals".into(), 12.into());
 	properties.insert("ss58Format".into(), 42.into());
 
 	ChainSpec::from_genesis(
 		// Name
-		"Local Testnet",
+		"Kabocha on Chachacha",
 		// ID
-		"local_testnet",
-		ChainType::Local,
+		"kabocha_testnet",
+		ChainType::Live,
 		move || {
 			testnet_genesis(
 				// initial collators.
@@ -160,12 +160,12 @@ pub fn local_testnet_config(id: ParaId) -> ChainSpec {
 		// Telemetry
 		None,
 		// Protocol ID
-		Some("template-local"),
+		Some("kabocha-collator"),
 		// Properties
 		Some(properties),
 		// Extensions
 		Extensions {
-			relay_chain: "rococo-local".into(), // You MUST set this to the correct network!
+			relay_chain: "rococo-chachacha".into(), // You MUST set this to the correct network!
 			para_id: id.into(),
 		},
 	)
